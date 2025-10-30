@@ -69,7 +69,7 @@ data:
     scenarios: {
         high_load: {
             executor: 'constant-arrival-rate',
-            rate: 2500, // 500 requests per second
+            rate: 2500, // 2500 requests per second
             timeUnit: '1s',
             duration: '1m',
             preAllocatedVUs: 100, // pre-spawned VUs
@@ -79,7 +79,7 @@ data:
 
     export default function () {
       // Simple HTTP + CPU test
-      const url = 'https://httpbin.org/get'; // or your service endpoint
+      const url = 'http://$IP/'; // your service endpoint
       const res = http.get(url);
       check(res, { 'status is 200': (r) => r.status === 200 });
       // light CPU work to simulate processing
