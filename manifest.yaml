@@ -66,23 +66,26 @@ data:
     import http from 'k6/http';
     import { check, sleep } from 'k6';
 
-    scenarios: {
-        high_load: {
-            executor: 'constant-arrival-rate',
-            rate: 2500, // 2500 requests per second
-            timeUnit: '1s',
-            duration: '1m',
-            preAllocatedVUs: 100, // pre-spawned VUs
-            maxVUs: 20000, // cap for autoscaling VUs
+    export const options = {
+        scenarios: {
+            high_load: {
+                executor: 'constant-arrival-rate',
+                rate: 2500, // 2500 requests per second
+                timeUnit: '1s',
+                duration: '1m',
+                preAllocatedVUs: 100, // pre-spawned VUs
+                maxVUs: 10000, // cap for autoscaling VUs
+            },
         },
-    },
+    };
 
     export default function () {
       // Simple HTTP + CPU test
-      const url = 'http://$IP/'; // your service endpoint
+      const url = 'http://194.64.176.244:8080/'; // or your service endpoint
       const res = http.get(url);
       check(res, { 'status is 200': (r) => r.status === 200 });
       // light CPU work to simulate processing
       for (let i = 0; i < 1e6; i++) Math.sqrt(i);
       sleep(0.2);
     }
+
