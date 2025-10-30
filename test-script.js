@@ -9,12 +9,12 @@ export const options = {
     ],*/
     
     /*vus: 100, // 100 concurrent users
-    duration: '1m', // each user runs for 2 minutes*/
+    duration: '1m', // each user runs for 1 minute*/
 
     scenarios: {
         high_load: {
             executor: 'constant-arrival-rate',
-            rate: 2500, // 500 requests per second
+            rate: 2500, // 2500 requests per second
             timeUnit: '1s',
             duration: '1m',
             preAllocatedVUs: 100, // pre-spawned VUs

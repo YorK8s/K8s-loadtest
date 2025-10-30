@@ -79,7 +79,7 @@ data:
 
     export default function () {
       // Simple HTTP + CPU test
-      const url = 'https://$IP/'; // or your service endpoint
+      const url = 'https://httpbin.org/get'; // or your service endpoint
       const res = http.get(url);
       check(res, { 'status is 200': (r) => r.status === 200 });
       // light CPU work to simulate processing
